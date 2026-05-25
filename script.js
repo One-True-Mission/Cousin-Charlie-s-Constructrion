@@ -8,6 +8,25 @@ document.addEventListener('DOMContentLoaded', function () {
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- Active Nav State ---------- */
+  var currentPage = document.body.dataset.page;
+  if (currentPage) {
+    var pageToHref = {
+      'home': 'index.html',
+      'services': 'services.html',
+      'about': 'about.html',
+      'contact': 'contact.html'
+    };
+    var activeHref = pageToHref[currentPage];
+    if (activeHref) {
+      document.querySelectorAll('.nav-links a').forEach(function (a) {
+        if (a.getAttribute('href') === activeHref) {
+          a.classList.add('is-active');
+        }
+      });
+    }
+  }
+
   /* ---------- Hamburger ---------- */
   var hamburger = document.querySelector('.hamburger');
   var navLinks = document.querySelector('.nav-links');
@@ -24,38 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---------- Before / After Comparison Slider (clip-path) ---------- */
-  var wrap = document.querySelector('.comparison-wrap');
-  if (wrap) {
-    var afterImg = wrap.querySelector('.comparison-after');
-    var handle = wrap.querySelector('.comparison-handle');
-    var dragging = false;
-
-    function setPosition(percent) {
-      percent = Math.max(0, Math.min(100, percent));
-      afterImg.style.clipPath = 'inset(0 0 0 ' + percent + '%)';
-      handle.style.left = percent + '%';
-    }
-
-    function updateFromEvent(e) {
-      var rect = wrap.getBoundingClientRect();
-      var clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
-      var x = clientX - rect.left;
-      var percent = (x / rect.width) * 100;
-      setPosition(percent);
-    }
-
-    wrap.addEventListener('mousedown', function (e) { dragging = true; updateFromEvent(e); e.preventDefault(); });
-    window.addEventListener('mousemove', function (e) { if (dragging) updateFromEvent(e); });
-    window.addEventListener('mouseup', function () { dragging = false; });
-
-    wrap.addEventListener('touchstart', function (e) { dragging = true; updateFromEvent(e); }, { passive: true });
-    window.addEventListener('touchmove', function (e) { if (dragging) updateFromEvent(e); }, { passive: true });
-    window.addEventListener('touchend', function () { dragging = false; });
-
-    setPosition(50);
-  }
-
   /* ---------- Gallery Carousel (3-up center stage with clone wrap) ---------- */
   var carousel = document.querySelector('.carousel');
   if (carousel) {
@@ -66,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var realSlides = Array.prototype.slice.call(track.querySelectorAll('.carousel-slide'));
     var total = realSlides.length;
-    var CLONE_COUNT = 2; // prepend 2, append 2 for 3-up wrap-around buffer
+    var CLONE_COUNT = 2;
 
-    // Clone first CLONE_COUNT slides to the END, and last CLONE_COUNT to the START
+    // clone first CLONE_COUNT slides to END, and last CLONE_COUNT to START
     for (var i = 0; i < CLONE_COUNT; i++) {
       var endClone = realSlides[i].cloneNode(true);
       endClone.classList.add('is-clone');
@@ -84,9 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var extendedTotal = allSlides.length;
 
     var slidesPerView = 3;
-    var centerIndex = CLONE_COUNT; // first real slide
+    var centerIndex = CLONE_COUNT;
     var autoplayId = null;
-    var AUTOPLAY_MS = 4000; // 25% faster than the previous 5500ms
+    var AUTOPLAY_MS = 4000;
     var inTransition = false;
 
     function getSlidesPerView() {
@@ -113,18 +100,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var x = -(centerIndex - halfOffset) * slideWidth;
       track.style.transform = 'translateX(' + x + 'px)';
 
-      // mark center slide
       allSlides.forEach(function (s, i) {
         s.classList.toggle('is-center', i === centerIndex);
       });
 
-      // dots based on real index
       var realIdx = ((centerIndex - CLONE_COUNT) % total + total) % total;
       var allDots = dotsWrap.querySelectorAll('.carousel-dot');
       allDots.forEach(function (d, i) { d.classList.toggle('is-active', i === realIdx); });
 
       if (!animate) {
-        // force reflow so the next animated transform actually animates
         void track.offsetWidth;
       }
     }
@@ -151,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     track.addEventListener('transitionend', snapIfNeeded);
 
-    // build dots (one per real slide)
+    // build dots
     for (var k = 0; k < total; k++) {
       var dot = document.createElement('button');
       dot.className = 'carousel-dot';

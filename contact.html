@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Cousin Charlie's Construction</title>
+  <meta name="description" content="Get a free estimate from Cousin Charlie's Construction. Serving Houston, Conroe, Galveston, and the surrounding Houston metro. Call or send a message." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="contact">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="wordmark">
+        <span class="wordmark-cousin">Cousin Charlie's</span>
+        <span class="wordmark-construction">CONSTRUCTION</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Free Estimate</a>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header class="hero hero-sub-page">
+    <div class="hero-bg" style="background-image: url('assets/hero-main.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content hero-content-narrow">
+      <div class="hero-eyebrow">Get In Touch</div>
+      <h1 class="hero-title hero-title-sub">Free Estimate.<br/><em>No Pressure.</em></h1>
+      <p class="hero-sub">Send the details, give us a call, or shoot us an email. We'll get back to you fast and come look at the job when it works for you.</p>
+    </div>
+  </header>
+
+  <!-- HERO DIVIDER -->
+  <div class="hero-divider"></div>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Let's Talk About Your Project</div>
+        <h2>Tell Us What You're Working On.</h2>
+        <p class="section-sub">The more we know up front, the more accurate the estimate. Photos help, but a quick description gets us started.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-form-wrap">
+          <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT_HERE" method="POST" class="contact-form">
+            <input type="hidden" name="_subject" value="New Estimate Request - Cousin Charlie's Construction" />
+            <input type="hidden" name="_next" value="thank-you.html" />
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-field">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" placeholder="Houston, Conroe, Galveston, or nearby" />
+            </div>
+            <div class="form-field">
+              <label for="service">What do you need?</label>
+              <select id="service" name="service">
+                <option>Custom Cabinets</option>
+                <option>Kitchen Remodel</option>
+                <option>Bathroom Remodel</option>
+                <option>Patio or Concrete Work</option>
+                <option>Home Addition</option>
+                <option>Custom Carpentry</option>
+                <option>Painting or Finish Work</option>
+                <option>New Home Build</option>
+                <option>Commercial Project</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="message">Tell us about the job</label>
+              <textarea id="message" name="message" rows="6" placeholder="What you're trying to do, rough timeline, and any details about the space. The more you can share, the better the estimate."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Send Estimate Request</button>
+          </form>
+        </div>
+
+        <aside class="contact-sidebar">
+          <div class="contact-block">
+            <div class="contact-label">Call or Text</div>
+            <a href="tel:7133718939" class="contact-value">713-371-8939</a>
+          </div>
+          <div class="contact-block">
+            <div class="contact-label">Email</div>
+            <a href="mailto:charlescaliconstruction@gmail.com" class="contact-value contact-value-sm">charlescaliconstruction@gmail.com</a>
+          </div>
+          <div class="contact-block">
+            <div class="contact-label">Based In</div>
+            <div class="contact-value contact-value-sm">Friendswood, TX</div>
+          </div>
+          <div class="contact-block">
+            <div class="contact-label">Service Area</div>
+            <div class="contact-value contact-value-sm">Houston &middot; Conroe &middot; Galveston<br/>and the surrounding Houston metro</div>
+          </div>
+          <div class="contact-block">
+            <div class="contact-label">Hours</div>
+            <div class="contact-value contact-value-sm">Always Open<br/><span class="contact-note">Call anytime, we'll answer or call back fast.</span></div>
+          </div>
+          <div class="contact-block contact-badge-block">
+            <span class="insured-badge">Fully Insured</span>
+            <span class="insured-badge">OSHA 30</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="section section-footer">
+    <div class="container-darkest">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <img src="assets/logo.png" alt="Cousin Charlie's Construction" class="footer-logo" />
+          <p class="footer-tag">No BS. Just solid work done right.</p>
+          <p class="footer-meta">Family-run. Fully insured. Houston, Conroe &amp; Galveston.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="tel:7133718939">713-371-8939</a>
+          <a href="mailto:charlescaliconstruction@gmail.com">charlescaliconstruction@gmail.com</a>
+          <span>Friendswood, TX</span>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="services.html">Custom Cabinets</a>
+          <a href="services.html">Remodels</a>
+          <a href="services.html">Patios &amp; Concrete</a>
+          <a href="services.html">Additions</a>
+          <a href="services.html">Carpentry</a>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Free Estimate</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year"></span> Cousin Charlie's Construction. All rights reserved.</span>
+        <span class="footer-credit">Built by <a href="https://otm-designs.com" target="_blank" rel="noopener">OTM Web Design</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
