@@ -130,13 +130,16 @@ p { color: var(--espresso-muted); }
   box-shadow: 0 10px 22px rgba(20, 67, 21, 0.45);
 }
 .btn-ghost {
-  background: transparent;
-  color: var(--cream-light);
-  border-color: rgba(250, 245, 232, 0.4);
+  background: var(--cream-light);
+  color: var(--green-deep);
+  border-color: var(--cream-light);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 .btn-ghost:hover {
-  background: rgba(250, 245, 232, 0.1);
-  border-color: rgba(250, 245, 232, 0.8);
+  background: var(--cream-solid);
+  border-color: var(--cream-solid);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
 }
 .btn-outline {
   background: transparent;
@@ -698,13 +701,31 @@ p { color: var(--espresso-muted); }
   position: relative;
 }
 .additional-text-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--green-deep);
   margin-bottom: 0.7rem;
+}
+.additional-text-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0;
+  color: var(--cream-light);
+  background: var(--green-deep);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  text-transform: none;
 }
 .additional-text h3 {
   font-size: 1.55rem;
@@ -715,6 +736,102 @@ p { color: var(--espresso-muted); }
 .additional-text p {
   font-size: 1rem;
   line-height: 1.6;
+}
+.additional-text-lead {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin-top: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.additional-text-lead::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  background: var(--green-bright);
+}
+
+/* Compact extras row for Commercial + HVAC combined card */
+.extras-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  background: var(--cream-light);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green-deep);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  min-height: 220px;
+  margin-top: 32px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s ease;
+}
+.extras-row:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-green);
+}
+.extras-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream-deep);
+}
+.extras-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.extras-row:hover .extras-image img {
+  transform: scale(1.04);
+}
+.extras-text {
+  padding: 30px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.extras-text-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  margin-bottom: 0.55rem;
+}
+.extras-text h3 {
+  font-size: 1.3rem;
+  color: var(--espresso);
+  margin-bottom: 0.55rem;
+  line-height: 1.2;
+}
+.extras-text p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* Closing CTA line for services page */
+.services-closing {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 30px 24px;
+  border-top: 1px solid var(--line-green);
+}
+.services-closing p {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--green-deep);
+  margin-bottom: 1.2rem;
+  line-height: 1.4;
 }
 
 /* ---------- CREDENTIALS GRID (about page, premium hover) ---------- */
@@ -1339,12 +1456,14 @@ a.contact-value:hover { color: var(--green-pale); }
   font-style: italic;
 }
 .footer-credit a {
-  color: rgba(250, 245, 232, 0.7);
+  color: var(--green-pale);
   text-decoration: none;
-  transition: color 0.18s ease;
+  font-weight: 600;
+  transition: color 0.18s ease, text-shadow 0.18s ease;
 }
 .footer-credit a:hover {
-  color: var(--green-pale);
+  color: var(--cream-light);
+  text-shadow: 0 0 12px rgba(111, 168, 111, 0.5);
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -1411,6 +1530,19 @@ a.contact-value:hover { color: var(--green-pale); }
   .additional-text {
     padding: 28px 32px 32px;
   }
+
+  /* extras row stacks too */
+  .extras-row {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .extras-image {
+    aspect-ratio: 16/10;
+    min-height: 180px;
+  }
+  .extras-text {
+    padding: 24px 28px 28px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1438,5 +1570,8 @@ a.contact-value:hover { color: var(--green-pale); }
   .stat:last-child { border-bottom: none; padding-bottom: 0; }
   .additional-text { padding: 24px 26px 28px; }
   .additional-text h3 { font-size: 1.3rem; }
+  .extras-text { padding: 20px 22px 24px; }
+  .extras-text h3 { font-size: 1.15rem; }
+  .services-closing p { font-size: 1.08rem; }
   .carousel-btn { width: 40px; height: 40px; }
 }
