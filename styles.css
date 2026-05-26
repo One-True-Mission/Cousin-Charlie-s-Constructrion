@@ -1514,14 +1514,19 @@ a.contact-value:hover { color: var(--green-pale); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-col:last-child { grid-column: auto; display: block; }
 
-  /* additional services stack on mobile */
+  /* additional services stack on mobile: image always on top */
   .additional-row,
   .additional-row-reverse {
     grid-template-columns: 1fr;
     min-height: auto;
   }
+  .additional-row .additional-image,
   .additional-row-reverse .additional-image {
     order: 1;
+  }
+  .additional-row .additional-text,
+  .additional-row-reverse .additional-text {
+    order: 2;
   }
   .additional-image {
     aspect-ratio: 16/10;
