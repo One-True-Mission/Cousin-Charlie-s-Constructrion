@@ -1184,6 +1184,8 @@ p { color: var(--espresso-muted); }
   box-shadow: var(--shadow-green);
   background: var(--cream-deep);
   user-select: none;
+  touch-action: none;
+  cursor: ew-resize;
 }
 /* green top accent to match other frames */
 .ba-images::before {
@@ -1286,21 +1288,8 @@ p { color: var(--espresso-muted); }
   height: 100%;
   margin: 0;
   opacity: 0;
-  cursor: ew-resize;
+  pointer-events: none;
   z-index: 6;
-}
-.ba-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 46px;
-  height: 100%;
-  cursor: ew-resize;
-}
-.ba-range::-moz-range-thumb {
-  width: 46px;
-  height: 100%;
-  border: none;
-  background: transparent;
-  cursor: ew-resize;
 }
 
 /* ---------- GALLERY PAGE GRID ---------- */

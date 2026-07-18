@@ -202,7 +202,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var beforeLayer = slider.querySelector('.ba-before');
     var handle = slider.querySelector('.ba-handle');
     var range = slider.querySelector('.ba-range');
-    if (!images || !beforeLayer || !handle || !range) return;
+    if (!images || !beforeLayer || !handle) return;
+
+    var pct = 50;
+    var dragging = false;
 
     // lock the before image width to the full slider width so it never
     // stretches or zooms while the clip container changes width
@@ -211,20 +214,59 @@ document.addEventListener('DOMContentLoaded', function () {
       slider.style.setProperty('--ba-width', w + 'px');
     }
 
-    function apply(pct) {
+    function apply(p) {
+      pct = Math.max(0, Math.min(100, p));
       beforeLayer.style.width = pct + '%';
       handle.style.left = pct + '%';
+      if (range) range.value = pct;
     }
 
-    range.addEventListener('input', function () {
-      apply(range.value);
-    });
+    // convert a pointer x-coordinate to a percentage across the images box
+    function pctFromX(clientX) {
+      var rect = images.getBoundingClientRect();
+      return ((clientX - rect.left) / rect.width) * 100;
+    }
+
+    // pointer events handle mouse + touch + pen uniformly, so the handle
+    // follows the finger from wherever the drag starts (not just on the thumb)
+    function onDown(e) {
+      dragging = true;
+      images.setPointerCapture && e.pointerId != null && images.setPointerCapture(e.pointerId);
+      apply(pctFromX(e.clientX));
+      e.preventDefault();
+    }
+    function onMove(e) {
+      if (!dragging) return;
+      apply(pctFromX(e.clientX));
+      e.preventDefault();
+    }
+    function onUp(e) {
+      dragging = false;
+      if (images.releasePointerCapture && e.pointerId != null) {
+        try { images.releasePointerCapture(e.pointerId); } catch (err) {}
+      }
+    }
+
+    images.addEventListener('pointerdown', onDown);
+    images.addEventListener('pointermove', onMove);
+    images.addEventListener('pointerup', onUp);
+    images.addEventListener('pointercancel', onUp);
+    images.addEventListener('pointerleave', onUp);
+
+    // keep the hidden range input working for keyboard accessibility
+    if (range) {
+      range.addEventListener('input', function () {
+        apply(parseFloat(range.value));
+      });
+      // stop the range's own pointer handling from fighting ours
+      range.style.pointerEvents = 'none';
+    }
 
     window.addEventListener('resize', setImageWidth);
 
-    // set initial state once the after image has dimensions
+    // set initial state
     setImageWidth();
-    apply(range.value);
+    apply(pct);
 
     // recompute width after images load (in case they weren't ready)
     slider.querySelectorAll('img').forEach(function (img) {
