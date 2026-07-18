@@ -196,6 +196,56 @@ document.addEventListener('DOMContentLoaded', function () {
     startAuto();
   }
 
+  /* ---------- Before / After Slider ---------- */
+  document.querySelectorAll('[data-ba]').forEach(function (slider) {
+    var images = slider.querySelector('.ba-images');
+    var beforeLayer = slider.querySelector('.ba-before');
+    var handle = slider.querySelector('.ba-handle');
+    var range = slider.querySelector('.ba-range');
+    if (!images || !beforeLayer || !handle || !range) return;
+
+    // lock the before image width to the full slider width so it never
+    // stretches or zooms while the clip container changes width
+    function setImageWidth() {
+      var w = images.clientWidth;
+      slider.style.setProperty('--ba-width', w + 'px');
+    }
+
+    function apply(pct) {
+      beforeLayer.style.width = pct + '%';
+      handle.style.left = pct + '%';
+    }
+
+    range.addEventListener('input', function () {
+      apply(range.value);
+    });
+
+    window.addEventListener('resize', setImageWidth);
+
+    // set initial state once the after image has dimensions
+    setImageWidth();
+    apply(range.value);
+
+    // recompute width after images load (in case they weren't ready)
+    slider.querySelectorAll('img').forEach(function (img) {
+      if (img.complete) return;
+      img.addEventListener('load', setImageWidth);
+    });
+  });
+
+  /* ---------- Gallery: hide items whose image file doesn't exist ---------- */
+  document.querySelectorAll('.gallery-item img').forEach(function (img) {
+    img.addEventListener('error', function () {
+      var item = img.closest('.gallery-item');
+      if (item) item.classList.add('is-empty');
+    });
+    // catch images that already errored before this ran
+    if (img.complete && img.naturalWidth === 0) {
+      var item = img.closest('.gallery-item');
+      if (item) item.classList.add('is-empty');
+    }
+  });
+
   /* ---------- Smooth-scroll offset for fixed nav ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {

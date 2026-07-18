@@ -555,6 +555,31 @@ p { color: var(--espresso-muted); }
               border-color 0.25s ease,
               background 0.25s ease;
 }
+/* full-bleed image at the top of the card */
+.service-card-has-img {
+  padding-top: 0;
+}
+.service-card-img {
+  position: relative;
+  margin: 0 -28px 0;
+  height: 170px;
+  overflow: hidden;
+  background: var(--cream-deep);
+}
+.service-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.service-card:hover .service-card-img img {
+  transform: scale(1.06);
+}
+.service-card-has-img .service-icon {
+  margin-top: -26px;
+  margin-bottom: 1rem;
+}
 /* animated top accent on hover */
 .service-card::before {
   content: '';
@@ -1143,6 +1168,223 @@ p { color: var(--espresso-muted); }
   transform: scale(1.35);
 }
 
+/* ---------- BEFORE / AFTER SLIDER ---------- */
+.ba-slider {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.ba-images {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid var(--green-deep);
+  box-shadow: var(--shadow-green);
+  background: var(--cream-deep);
+  user-select: none;
+}
+/* green top accent to match other frames */
+.ba-images::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-darker), var(--green-deep), var(--green-bright), var(--green-deep), var(--green-darker));
+  z-index: 5;
+}
+/* BOTH images are locked to the exact same box so nothing warps while dragging */
+.ba-after-img,
+.ba-before-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
+/* the before layer is clipped from the right edge via inline width set by JS */
+.ba-before {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  overflow: hidden;
+  z-index: 2;
+  will-change: width;
+}
+/* keep the before image sized to the FULL slider, not the clipped container,
+   so it never zooms/stretches as the clip width changes */
+.ba-before .ba-before-img {
+  width: var(--ba-width, 900px);
+  max-width: none;
+}
+.ba-label {
+  position: absolute;
+  bottom: 16px;
+  z-index: 4;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-light);
+  background: rgba(14, 47, 16, 0.82);
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(111, 168, 111, 0.5);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.ba-label-before { left: 16px; }
+.ba-label-after { right: 16px; }
+/* drag handle bar */
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  transform: translateX(-50%);
+  background: var(--cream-light);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+.ba-handle-line {
+  flex: 1;
+  width: 4px;
+  background: var(--cream-light);
+}
+.ba-handle-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--green-deep);
+  color: var(--cream-light);
+  border: 3px solid var(--cream-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+.ba-handle-btn svg { width: 22px; height: 22px; }
+/* the actual range input sits on top, invisible, and drives everything */
+.ba-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 6;
+}
+.ba-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 46px;
+  height: 100%;
+  cursor: ew-resize;
+}
+.ba-range::-moz-range-thumb {
+  width: 46px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+/* ---------- GALLERY PAGE GRID ---------- */
+.gallery-section-head {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+.gallery-section-head .eyebrow {
+  margin-bottom: 0.5rem;
+}
+.gallery-section-head h3 {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  color: var(--green-deep);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.6rem;
+}
+.gallery-section-head h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--green-deep), var(--green-bright), var(--green-deep));
+}
+.gallery-section-head-spaced {
+  margin-top: 3.5rem;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  background: var(--cream-deep);
+  aspect-ratio: 4 / 3;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+}
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-deep), var(--green-bright), var(--green-deep));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: 3;
+}
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-green);
+  border-color: var(--green-deep);
+}
+.gallery-item:hover::before {
+  transform: scaleX(1);
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+/* hidden state for images that fail to load (no file in assets) */
+.gallery-item.is-empty {
+  display: none;
+}
+
 /* ---------- SERVICE AREA (about page) ---------- */
 .area-grid {
   display: grid;
@@ -1227,6 +1469,31 @@ p { color: var(--espresso-muted); }
   text-align: center;
   max-width: 720px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+/* CTA with background image */
+.container-cta-bg {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(0, 0, 0, 0.35);
+}
+.container-cta-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('assets/cta-bg.jpg') center/cover no-repeat;
+  z-index: 0;
+}
+/* dark green wash over the image so text stays readable and on-brand */
+.container-cta-bg .cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(14, 47, 16, 0.92) 0%,
+    rgba(20, 67, 21, 0.82) 50%,
+    rgba(14, 47, 16, 0.9) 100%);
+  z-index: 1;
 }
 .cta-title {
   color: var(--cream-light);
@@ -1637,6 +1904,7 @@ a.contact-value:hover { color: var(--green-pale); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .creds-grid { grid-template-columns: repeat(2, 1fr); }
   .process-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
   .footer-col:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
   .footer-col:last-child h4 { grid-column: 1 / -1; }
@@ -1745,4 +2013,10 @@ a.contact-value:hover { color: var(--green-pale); }
   .extras-text h3 { font-size: 1.15rem; }
   .services-closing p { font-size: 1.08rem; }
   .carousel-btn { width: 40px; height: 40px; }
+  .gallery-grid { grid-template-columns: 1fr; gap: 16px; }
+  .ba-images { aspect-ratio: 4 / 3; }
+  .ba-handle-btn { width: 40px; height: 40px; }
+  .ba-label { font-size: 0.64rem; padding: 5px 11px; bottom: 12px; }
+  .ba-label-before { left: 12px; }
+  .ba-label-after { right: 12px; }
 }
