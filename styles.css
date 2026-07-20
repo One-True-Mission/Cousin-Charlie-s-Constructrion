@@ -1169,6 +1169,40 @@ p { color: var(--espresso-muted); }
 }
 
 /* ---------- BEFORE / AFTER SLIDER ---------- */
+.ba-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.ba-item {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+.ba-item.is-empty {
+  display: none;
+}
+.ba-room-label {
+  text-align: center;
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--green-deep);
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.7rem;
+}
+.ba-room-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--green-deep), var(--green-bright), var(--green-deep));
+}
 .ba-slider {
   position: relative;
   max-width: 900px;

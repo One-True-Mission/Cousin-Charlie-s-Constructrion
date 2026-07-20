@@ -204,6 +204,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var range = slider.querySelector('.ba-range');
     if (!images || !beforeLayer || !handle) return;
 
+    // hide the whole slider (and its room label) if either image is missing,
+    // so unsaved before-2/after-2 etc. don't show a broken/empty box
+    var wrapper = slider.closest('.ba-item') || slider;
+    slider.querySelectorAll('img').forEach(function (img) {
+      img.addEventListener('error', function () {
+        wrapper.classList.add('is-empty');
+      });
+      if (img.complete && img.naturalWidth === 0) {
+        wrapper.classList.add('is-empty');
+      }
+    });
+
     var pct = 50;
     var dragging = false;
 

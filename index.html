@@ -46,7 +46,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">Family-Run &middot; Fully Insured &middot; OSHA 30 Certified</div>
-      <h1 class="hero-title">No BS.<br/>Just Solid Work<br/><em>Done Right.</em></h1>
+      <h1 class="hero-title">Solid Work<br/><em>Done Right.</em></h1>
       <p class="hero-sub">Full-service construction across Houston, Conroe, and Galveston. Remodels, custom cabinets, patios, additions. Permits pulled, inspections passed, work guaranteed.</p>
       <div class="hero-ctas">
         <a href="contact.html" class="btn btn-primary">Get a Free Estimate</a>
@@ -60,7 +60,7 @@
     <div class="container container-deep">
       <div class="marquee">
         <div class="marquee-track">
-          <span class="marquee-item">No BS, Just Solid Work</span>
+          <span class="marquee-item">Solid Work Done Right</span>
           <span class="marquee-dot">&bull;</span>
           <span class="marquee-item">Fully Insured</span>
           <span class="marquee-dot">&bull;</span>
@@ -72,7 +72,7 @@
           <span class="marquee-dot">&bull;</span>
           <span class="marquee-item">Houston &middot; Conroe &middot; Galveston</span>
           <span class="marquee-dot">&bull;</span>
-          <span class="marquee-item">No BS, Just Solid Work</span>
+          <span class="marquee-item">Solid Work Done Right</span>
           <span class="marquee-dot">&bull;</span>
           <span class="marquee-item">Fully Insured</span>
           <span class="marquee-dot">&bull;</span>
@@ -207,36 +207,86 @@
     </div>
   </section>
 
-  <!-- BEFORE & AFTER SLIDER -->
+  <!-- BEFORE & AFTER SLIDERS -->
   <section class="section">
     <div class="container">
       <div class="section-head">
         <div class="eyebrow">See the Difference</div>
-        <h2>The Transformation.</h2>
-        <p class="section-sub">Drag the slider to see the difference. Real work, start to finish.</p>
+        <h2>See the Transformations.</h2>
+        <p class="section-sub">Drag each slider to see the difference. Real work, start to finish.</p>
       </div>
 
-      <div class="ba-slider" data-ba>
-        <div class="ba-images">
-          <!-- AFTER image sits underneath (full width) -->
-          <img class="ba-after-img" src="assets/after-1.jpg" alt="After the remodel" draggable="false" />
-          <!-- BEFORE image is clipped from the left via JS -->
-          <div class="ba-before">
-            <img class="ba-before-img" src="assets/before-1.jpg" alt="Before the remodel" draggable="false" />
-          </div>
-          <!-- labels baked into markup, not the photos -->
-          <span class="ba-label ba-label-before">Before</span>
-          <span class="ba-label ba-label-after">After</span>
-          <!-- drag handle -->
-          <div class="ba-handle">
-            <div class="ba-handle-line"></div>
-            <button class="ba-handle-btn" aria-label="Drag to compare">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6"/><path d="M15 6l6 6-6 6"/></svg>
-            </button>
-            <div class="ba-handle-line"></div>
+      <div class="ba-stack">
+
+        <!-- Living Room -->
+        <div class="ba-item">
+          <div class="ba-room-label">Living Room</div>
+          <div class="ba-slider" data-ba>
+            <div class="ba-images">
+              <img class="ba-after-img" src="assets/after-1.jpg" alt="Living room after the remodel" draggable="false" />
+              <div class="ba-before">
+                <img class="ba-before-img" src="assets/before-1.jpg" alt="Living room before the remodel" draggable="false" />
+              </div>
+              <span class="ba-label ba-label-before">Before</span>
+              <span class="ba-label ba-label-after">After</span>
+              <div class="ba-handle">
+                <div class="ba-handle-line"></div>
+                <button class="ba-handle-btn" aria-label="Drag to compare">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6"/><path d="M15 6l6 6-6 6"/></svg>
+                </button>
+                <div class="ba-handle-line"></div>
+              </div>
+            </div>
+            <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Living room before and after comparison slider" />
           </div>
         </div>
-        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Before and after comparison slider" />
+
+        <!-- Kitchen -->
+        <div class="ba-item">
+          <div class="ba-room-label">Kitchen</div>
+          <div class="ba-slider" data-ba>
+            <div class="ba-images">
+              <img class="ba-after-img" src="assets/after-2.jpg" alt="Kitchen after the remodel" draggable="false" />
+              <div class="ba-before">
+                <img class="ba-before-img" src="assets/before-2.jpg" alt="Kitchen before the remodel" draggable="false" />
+              </div>
+              <span class="ba-label ba-label-before">Before</span>
+              <span class="ba-label ba-label-after">After</span>
+              <div class="ba-handle">
+                <div class="ba-handle-line"></div>
+                <button class="ba-handle-btn" aria-label="Drag to compare">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6"/><path d="M15 6l6 6-6 6"/></svg>
+                </button>
+                <div class="ba-handle-line"></div>
+              </div>
+            </div>
+            <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Kitchen before and after comparison slider" />
+          </div>
+        </div>
+
+        <!-- Bathroom -->
+        <div class="ba-item">
+          <div class="ba-room-label">Bathroom</div>
+          <div class="ba-slider" data-ba>
+            <div class="ba-images">
+              <img class="ba-after-img" src="assets/after-3.jpg" alt="Bathroom after the remodel" draggable="false" />
+              <div class="ba-before">
+                <img class="ba-before-img" src="assets/before-3.jpg" alt="Bathroom before the remodel" draggable="false" />
+              </div>
+              <span class="ba-label ba-label-before">Before</span>
+              <span class="ba-label ba-label-after">After</span>
+              <div class="ba-handle">
+                <div class="ba-handle-line"></div>
+                <button class="ba-handle-btn" aria-label="Drag to compare">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6"/><path d="M15 6l6 6-6 6"/></svg>
+                </button>
+                <div class="ba-handle-line"></div>
+              </div>
+            </div>
+            <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Bathroom before and after comparison slider" />
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -320,7 +370,7 @@
       <div class="footer-grid">
         <div class="footer-col footer-brand">
           <img src="assets/logo.png" alt="Cousin Charlie's Construction" class="footer-logo" />
-          <p class="footer-tag">No BS. Just solid work done right.</p>
+          <p class="footer-tag">Solid work done right.</p>
           <p class="footer-meta">Family-run. Fully insured. Houston, Conroe &amp; Galveston.</p>
         </div>
         <div class="footer-col">
